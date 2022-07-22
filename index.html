@@ -12,9 +12,9 @@
 	<title>College Canteen Management</title>
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/images/site.webmanifest">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<link rel="manifest" href="/images/site.webmanifest">
 	<!-- Web Font -->
 	<link
 		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
@@ -89,7 +89,8 @@
 								<li><i class="ti-location-pin"></i> Store location</li>
 								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
 								<li><i class="ti-user"></i> <a href="#">My account</a></li>
-								<li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
+								<li id="indexLoginButton"></li>
+								<li id="indexLogoutButton"></li>
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -222,18 +223,8 @@
 											<li><a href="#">Veg Sandwich</a></li>
 
 										</ul>
-									</li><li><a href="#">Meals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<ul class="sub-category">
-											<li><a href="#">Samosa</a></li>
-											<li><a href="#">Kachori</a></li>
-											<li><a href="#">Fries</a></li>
-											<li><a href="#">Veg Tikki Burger</a></li>
-											<li><a href="#">Potato Patties</a></li>
-											<li><a href="#">Veg Capsicum Pizza</a></li>
-											<li><a href="#">Veg Sandwich</a></li>
-
-										</ul>
-									</li><li><a href="#">Drinks <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+									</li>
+									<li><a href="#">Meals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 										<ul class="sub-category">
 											<li><a href="#">Samosa</a></li>
 											<li><a href="#">Kachori</a></li>
@@ -245,7 +236,20 @@
 
 										</ul>
 									</li>
-									<li><a href="#">Packet-Items <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+									<li><a href="#">Drinks <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<ul class="sub-category">
+											<li><a href="#">Samosa</a></li>
+											<li><a href="#">Kachori</a></li>
+											<li><a href="#">Fries</a></li>
+											<li><a href="#">Veg Tikki Burger</a></li>
+											<li><a href="#">Potato Patties</a></li>
+											<li><a href="#">Veg Capsicum Pizza</a></li>
+											<li><a href="#">Veg Sandwich</a></li>
+
+										</ul>
+									</li>
+									<li><a href="#">Packet-Items <i class="fa fa-angle-right"
+												aria-hidden="true"></i></a>
 										<ul class="sub-category">
 											<li><a href="#">Samosa</a></li>
 											<li><a href="#">Kachori</a></li>
@@ -1420,16 +1424,14 @@
 							<div class="tab-pane fade" id="shakes" role="tabpanel">
 								<div class="tab-single">
 									<div class="row">
-										
-										
+
+
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<div class="single-product">
 												<div class="product-img">
 													<a href="product-details.html">
-														<img class="default-img"
-															src="images/shakes/banana.png" alt="#">
-														<img class="hover-img" src="images/shakes/banana.png"
-															alt="#">
+														<img class="default-img" src="images/shakes/banana.png" alt="#">
+														<img class="hover-img" src="images/shakes/banana.png" alt="#">
 														<span class="new">New</span>
 													</a>
 													<div class="button-head">
@@ -1461,10 +1463,8 @@
 											<div class="single-product">
 												<div class="product-img">
 													<a href="product-details.html">
-														<img class="default-img"
-															src="images/shakes/mango.png" alt="#">
-														<img class="hover-img" src="images/shakes/mango.png"
-															alt="#">
+														<img class="default-img" src="images/shakes/mango.png" alt="#">
+														<img class="hover-img" src="images/shakes/mango.png" alt="#">
 													</a>
 													<div class="button-head">
 														<div class="product-action">
@@ -1495,10 +1495,8 @@
 											<div class="single-product">
 												<div class="product-img">
 													<a href="product-details.html">
-														<img class="default-img"
-															src="images/shakes/oreo.png" alt="#">
-														<img class="hover-img" src="images/shakes/oreo.png"
-															alt="#">
+														<img class="default-img" src="images/shakes/oreo.png" alt="#">
+														<img class="hover-img" src="images/shakes/oreo.png" alt="#">
 														<span class="price-dec">30% Off</span>
 													</a>
 													<div class="button-head">
@@ -1530,10 +1528,8 @@
 											<div class="single-product">
 												<div class="product-img">
 													<a href="product-details.html">
-														<img class="default-img"
-															src="images/shakes/straw.png" alt="#">
-														<img class="hover-img" src="images/shakes/straw.png"
-															alt="#">
+														<img class="default-img" src="images/shakes/straw.png" alt="#">
+														<img class="hover-img" src="images/shakes/straw.png" alt="#">
 													</a>
 													<div class="button-head">
 														<div class="product-action">
@@ -1564,10 +1560,8 @@
 											<div class="single-product">
 												<div class="product-img">
 													<a href="product-details.html">
-														<img class="default-img"
-															src="images/shakes/vanila.png" alt="#">
-														<img class="hover-img" src="images/shakes/vanila.png"
-															alt="#">
+														<img class="default-img" src="images/shakes/vanila.png" alt="#">
+														<img class="hover-img" src="images/shakes/vanila.png" alt="#">
 														<span class="out-of-stock">Hot</span>
 													</a>
 													<div class="button-head">
@@ -1774,7 +1768,7 @@
 							<div class="col-lg-6 col-md-6 col-12 no-padding">
 								<div class="content">
 									<h4 class="title"><a href="#">Potato Samosa with Sauce</a></h4>
-									
+
 									<p class="price with-discount">₹10</p>
 								</div>
 							</div>
@@ -2019,7 +2013,7 @@
 	</section>
 	<!-- End Shop Newsletter -->
 
-	
+
 
 	<!-- Start Footer Area -->
 	<footer class="footer">
@@ -2150,6 +2144,8 @@
 	<script src="js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
+	      <script  type = "module" src="js/index.js"></script>
+
 </body>
 
 </html>
