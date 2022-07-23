@@ -52,8 +52,6 @@ if (userCredentials) {
 
 
 const addToCart = async (name, imageUrl, price) => {
-
-  console.log("hiii");
   const db = getFirestore();
   const email = userCredentials.user.email
   await updateDoc(doc(db, "user", email), {
@@ -64,15 +62,4 @@ const addToCart = async (name, imageUrl, price) => {
   return false;
 }
 window.addToCart = addToCart;
-
-
-
-
-// const addBurger = document.getElementById("addBurger");
-// const Burger = {
-//   init() {
-
-//   },
-
-// }
-// addBurger.addEventListener("click",()=>addToCart('Veg Tikki Burger','https://firebasestorage.googleapis.com/v0/b/collegecanteenmanagement.appspot.com/o/ff%2Ffries.png?alt=media&token=dfcd276e-211e-4a3c-bea3-70cf26e3ee00',40))
+export {firebaseApp};
