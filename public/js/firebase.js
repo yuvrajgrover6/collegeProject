@@ -52,15 +52,19 @@ if (userCredentials) {
 
 const user = auth.currentUser;
 const db = getFirestore();
-const addTooCart = 
-  await setDoc(doc(db, "cart", 'user'), {
+
+const addTooCart = async () => {
+  const email = userCredentials.user.email
+  console.log(email);
+  await setDoc(doc(db, "cart", email), {
     name: "Los Angeles",
     state: "CA",
     country: "USA"
   });
+}
 
 
 
 
 const add = document.getElementById("getStarted");
-add.addEventListener("click", ()=>addTooCart)
+add.addEventListener("click", addTooCart)
