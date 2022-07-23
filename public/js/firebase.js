@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-
+import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js';
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyA2QWk54gkOWIEW15tFL8-4o9Vra7oCOxI",
   authDomain: "collegecanteenmanagement.firebaseapp.com",
@@ -14,9 +14,10 @@ const firebaseApp = initializeApp({
 const auth = getAuth(firebaseApp);
 if (localStorage.getItem('user') != undefined)
   var userCredentials = JSON.parse(localStorage.getItem('user'));
-if(!userCredentials){
-location.replace("login.html#")}
-else{
+if (!userCredentials) {
+  location.replace("login.html#")
+}
+else {
   location.replace("index.html#")
 }
 const loginEmailPass = async () => {
@@ -49,9 +50,17 @@ if (userCredentials) {
   loginButton.addEventListener("click", loginEmailPass);
 }
 
+const user = auth.currentUser;
+const db = getFirestore();
+const addTooCart = 
+  await setDoc(doc(db, "cart", 'user'), {
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+  });
 
 
 
 
-
-
+const add = document.getElementById("getStarted");
+add.addEventListener("click", ()=>addTooCart)

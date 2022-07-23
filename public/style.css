@@ -1214,7 +1214,7 @@ Version:1.0
 }
 .hero-slider .single-slider {
 	height: auto;
-	background-image: url('images/1900.jpg');
+	background-image: url('images/1900.jpg.png');
 	background-size:contain;
 	background-position: right;
 	background-repeat: no-repeat;
