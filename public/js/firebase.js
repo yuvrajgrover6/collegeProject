@@ -50,25 +50,5 @@ if (userCredentials) {
   loginButton.addEventListener("click", loginEmailPass);
 }
 
-
-
-
-
 // const addBurger = document.getElementById("addBurger");
-const Burger = {
-init(){
-
-   },
-   async  addToCart (name,imageUrl,price)  {
-    const db = getFirestore();
-    const email = userCredentials.user.email
-    await setDoc(doc(db, "cart", email), {
-      name: name,
-      state: imageUrl,
-      price: price
-    }).then(Toast.show('Item Successfully','Added to Cart','success'))
-  }
- 
-
-}
 // addBurger.addEventListener("click",()=>addToCart('Veg Tikki Burger','https://firebasestorage.googleapis.com/v0/b/collegecanteenmanagement.appspot.com/o/ff%2Ffries.png?alt=media&token=dfcd276e-211e-4a3c-bea3-70cf26e3ee00',40))

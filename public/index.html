@@ -48,13 +48,23 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<link rel="stylesheet" href="css/toast.css">
+	<script src="js/firebase.js" type="module" >
+           const addToCart = async(name,imageUrl,price) => {
+            const db = getFirestore();
+            const email = userCredentials.user.email
+            await setDoc(doc(db, "cart", email), {
+              name: name,
+              state: imageUrl,
+              price: price
+            }).then(Toast.show('Item Successfully','Added to Cart','success'))
+          }
+
+        </script>
 	<script src="js/toast.js"></script>
 
 </head>
 
 <body class="js" id="indexBody">
-	<script src="js/firebase.js" type="module" >
-	</script>
 	<!-- Preloader -->
 	<div class="preloader">
 		<div class="preloader-inner">
@@ -332,7 +342,7 @@
 										<h1><span>Digital Canteen Manager</span>College Canteen Management</h1>
 										<p>This website is specially designed by RevamphCo for MIMIT	College Canteen
 											to be managed online in a easy manner. </p>
-										<div class="button" onclick="Burger.addToCart('burger','dggg',200)">
+										<div class="button" onclick="addToCart('burger','dggg',200)">
 											<a class="btn" >Get Started!</a>
 										</div>
 									</div>
