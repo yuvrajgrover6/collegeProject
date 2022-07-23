@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js';
+import { doc, updateDoc, getFirestore, arrayUnion, setDoc  } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js';
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyA2QWk54gkOWIEW15tFL8-4o9Vra7oCOxI",
   authDomain: "collegecanteenmanagement.firebaseapp.com",
@@ -56,14 +56,14 @@ const addToCart = async (name, imageUrl, price) => {
   console.log("hiii");
   const db = getFirestore();
   const email = userCredentials.user.email
-  await setDoc(doc(db, "cart", email), {
-    name: name,
-    state: imageUrl,
-    price: price
+  await updateDoc(doc(db, "user", email), {
+   "user" : arrayUnion({ name: name,
+    image: imageUrl,
+    price: price})
   }).then(Toast.show('Item Successfully', 'Added to Cart', 'success'))
   return false;
 }
-window.addToCart = addToCart
+window.addToCart = addToCart;
 
 
 
