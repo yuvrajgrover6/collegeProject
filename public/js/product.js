@@ -1,10 +1,10 @@
-import {firebaseApp} from './firebase.js'
-import {  doc, getDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js';
+import { firebaseApp } from './firebase.js'
+import { doc, getDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js';
 var userCredentials = JSON.parse(localStorage.getItem('user'));
-const db = getFirestore();
 firebaseApp();
+const db = getFirestore();
 class Product {
-    constructor (name, imageUrl, price) {
+    constructor(name, imageUrl, price) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.price = price;
@@ -21,13 +21,14 @@ const productConverter = {
             name: product.name,
             imageUrl: product.imageUrl,
             price: product.price
-            };
+        };
     },
     fromFirestore: (snapshot, options) => {
         const data = snapshot.data(options);
         return new Product(data.name, data.imageUrl, data.price);
     }
 };
+console.log("product loaded")
 const email = userCredentials.user.email;
 const ref = doc(db, "user", email).withConverter(productConverter);
 const docSnap = await getDoc(ref);
