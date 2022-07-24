@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase
 import {
     signInWithEmailAndPassword,
     signOut,
+    getAuth,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import {
     doc,
@@ -20,12 +21,22 @@ export const firebaseApp = initializeApp({
     messagingSenderId: "342578691892",
     appId: "1:342578691892:web:d0bee52ef6523fe1662f61",
 });
+export const auth = getAuth(firebaseApp);
+
+if (localStorage.getItem("user") != undefined)
+    var userCredentials = JSON.parse(localStorage.getItem("user"));
+if (!userCredentials) {
+    console.log('replacing login')
+    location.replace("login.html#");
+} else {
+    console.log('replacing index')
+    location.replace("index.html#");
+}
 
 export const loginEmailPass = async() => {
-    console.log("login");
     const loginEmail = document.getElementById("loginEmail").value;
     const loginPassword = document.getElementById("loginPassword").value;
-    userCredentials = await signInWithEmailAndPassword(
+    const userCredentials = await signInWithEmailAndPassword(
             auth,
             loginEmail,
             loginPassword
@@ -38,7 +49,7 @@ export const loginEmailPass = async() => {
         .then((user) => {
             if (user != undefined) {
                 localStorage.setItem("user", JSON.stringify(user));
-                location.replace("index.html");
+                location.replace("index.html#");
             }
             console.log(user);
         });

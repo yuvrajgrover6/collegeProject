@@ -11,7 +11,9 @@ const firebaseApp = initializeApp({
     appId: "1:342578691892:web:d0bee52ef6523fe1662f61"
 });
 
+console.log("hello")
 const auth = getAuth(firebaseApp);
+console.log("hello")
 if (localStorage.getItem('user') != undefined)
     var userCredentials = JSON.parse(localStorage.getItem('user'));
 if (!userCredentials) {
