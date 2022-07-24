@@ -8,8 +8,10 @@ const db = getFirestore();
 
 const ref = doc(db, `user/${getUserEmail()}`);
 const docSnap = await getDoc(ref);
+
+let user_data;
 if (docSnap.exists()) {
-    const user_data = docSnap.data();
+    user_data = docSnap.data();
 } else {
     console.log("No such document!");
 }
