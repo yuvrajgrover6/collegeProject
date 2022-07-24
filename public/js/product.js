@@ -14,8 +14,9 @@ if (docSnap.exists()) {
     console.log("No such document!");
 }
 
+let user_cart;
 if (user_data) {
-    const user_cart = user_data.cart;
+    user_cart = user_data.cart;
 }
 
 console.log(user_cart);
