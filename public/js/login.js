@@ -9,10 +9,5 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
 });
 var userCredentials = JSON.parse(localStorage.getItem("user"));
 
-if (userCredentials) {
-    const logoutBtn = document.getElementById("indexLogoutButton");
-    logoutBtn.addEventListener("click", logout);
-} else {
-    const loginButton = document.getElementById("loginBtn");
-    loginButton.addEventListener("click", loginEmailPass);
-}
+const loginButton = document.getElementById("loginBtn");
+loginButton.addEventListener("click", loginEmailPass);

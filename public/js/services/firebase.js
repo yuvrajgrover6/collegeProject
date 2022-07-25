@@ -30,6 +30,7 @@ if (!userCredentials) {
     location.replace("login.html#");
 } else {
     console.log('replacing index')
+    console.log(userCredentials)
     location.replace("index.html#");
 }
 
@@ -56,8 +57,8 @@ export const loginEmailPass = async() => {
 };
 export const logout = async() => {
     await signOut(auth);
-    localStorage.clear();
-    window.replace("login.html");
+    window.localStorage.clear();
+    window.location.replace("login.html#");
 };
 
 export function getUserEmail() {
