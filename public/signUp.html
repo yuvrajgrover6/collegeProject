@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title Tag  -->
-    <title>Login</title>
+    <title>SignUp</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Web Font -->
@@ -50,7 +50,7 @@
 
     <script src="js/services/firebase.js" type="module" defer>
     </script>
-    <script src="js/login.js" type="module"></script>
+    <!-- <script src="js/login.js" type="module"></script> -->
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-inner">
@@ -75,13 +75,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="menu-area">
-                                 <!-- Main Menu -->
-                                 <nav class="navbar navbar-expand-lg">
+                                <!-- Main Menu -->
+                                <nav class="navbar navbar-expand-lg">
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="login.html">Login</a></li>
-                                                <li ><a href="signUp.html">SignUp</a></li>
+                                                <li><a href="login.html">Login</a></li>
+                                                <li class="active"><a href="signUp.html">SignUp</a></li>
                                                
                                                 <li><a href="contact.html">Contact Us</a></li>
                                             </ul>
@@ -107,7 +107,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="index.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="login.html">Login</a></li>
+                            <li class="active"><a href="signUp.html">SignUp</a></li>
                         </ul>
                     </div>
                 </div>
@@ -124,40 +124,40 @@
                     <div class="col-lg-8 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>Login Form</h4>
-                                <h3>Login to you account</h3>
+                                <h4>SignUp Form</h4>
+                                <h3>Create a new account</h3>
                             </div>
-                            <form class="form" onsubmit="" id="loginForm">
+                            <form class="form" onsubmit="" id="signUpForm">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>Your Name<span>*</span></label>
-                                            <input id="loginName" type="text" placeholder="Enter Your Full Name">
+                                            <input id="signUpName" type="text" placeholder="Enter Your Full Name">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>Your Email<span>*</span></label>
-                                            <input type="email" id="loginEmail" placeholder="Enter Your Email">
+                                            <input type="email" id="signUpEmail" placeholder="Enter Your Email">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>Enter Password<span>*</span></label>
-                                            <input type="password" id="loginPassword" placeholder="Enter Your Password">
+                                            <input type="password" id="signUpPassword" placeholder="Enter Your Password">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>Your Phone<span>*</span></label>
-                                            <input id="loginPhone" type="text" placeholder="Enter Phone Number">
+                                            <input id="signUpPhone" type="number" placeholder="Enter Phone Number">
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-group button">
-                                            <button class="btn" id="loginBtn">Login</button>
+                                            <button class="btn" id="signUp">Create Account</button>
                                         </div>
                                     </div>
                                 </div>
