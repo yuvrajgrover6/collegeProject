@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 import {
     signInWithEmailAndPassword,
+    onAuthStateChanged,
     signOut,
     getAuth,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
@@ -23,17 +24,14 @@ export const firebaseApp = initializeApp({
 });
 export const auth = getAuth(firebaseApp);
 
-if (localStorage.getItem("user") != undefined)
-    var userCredentials = JSON.parse(localStorage.getItem("user"));
-if (!userCredentials) {
-    console.log('replacing login')
-    location.replace("login.html#");
-} else {
-    console.log('replacing index')
-    console.log(userCredentials)
-    location.replace("index.html#");
-}
-
+// if (localStorage.getItem("user") != undefined)
+//   var userCredentials = JSON.parse(localStorage.getItem("user"));
+// if (!userCredentials) {
+//   console.log("replacing login");
+// } else {
+//   console.log("replacing index");
+//   console.log(userCredentials);
+// }
 export const loginEmailPass = async() => {
     const loginEmail = document.getElementById("loginEmail").value;
     const loginPassword = document.getElementById("loginPassword").value;
