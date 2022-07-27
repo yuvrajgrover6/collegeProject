@@ -32,13 +32,29 @@ export const auth = getAuth(firebaseApp);
 //   console.log("replacing index");
 //   console.log(userCredentials);
 // }
-export const loginEmailPass = async() => {
-    const loginEmail = document.getElementById("loginEmail").value;
-    const loginPassword = document.getElementById("loginPassword").value;
+
+export function signupEmailPass(name, email, phone, password); {
+    debugger;
+    auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            if (userCredential.user) {
+                localStorage.setItem("user", JSON.stringify(user));
+                location.replace("login.html#");
+            }
+            addUserToDb(name, email, phone)
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
+}
+
+
+export const loginEmailPass = async(email, password) => {
     const userCredentials = await signInWithEmailAndPassword(
             auth,
-            loginEmail,
-            loginPassword
+            email,
+            password
         )
         .catch((error) => {
             const errorMessage = error.message;
@@ -92,4 +108,18 @@ const addToCart = async(name, imageUrl, price) => {
 
     return false;
 };
+
+
+const addUserToDb = async(name, email, phone) => {
+    const db = getFirestore();
+    var userCredentials = JSON.parse(localStorage.getItem("user"));
+    Toast.show("", "In cart", "warning");
+    await setDoc(
+        doc(db, "user", getUserEmail()), { name: name, email: email, phone: phone },
+    ).then(Toast.show("User Successfully", "Registered", "success")).error(Toast.show("User Registration", "Failed", "failure"))
+
+    return false;
+};
+
+
 window.addToCart = addToCart;
