@@ -97,7 +97,7 @@ const addToCart = async(name, imageUrl, price) => {
     const db = getFirestore();
     var userCredentials = JSON.parse(localStorage.getItem("user"));
     if (await getProductPresenceByName(name)) {
-        Toast.show("Item Already exists", "In cart", "warning");
+        Toast.show("Item Already exists", "In cart", "error");
     } else {
         await setDoc(
             doc(db, "user", getUserEmail()), {
