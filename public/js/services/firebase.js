@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { Toast } from "../toast.js";
 
 import {
     signInWithEmailAndPassword,
@@ -96,6 +95,7 @@ async function getProductPresenceByName(name) {
     const docSnap = await getDoc(ref);
     if (docSnap.exists()) {
         const user_data = docSnap.data();
+        if (!user_data.cart) return false;
         return !user_data.cart.every((element) => {
             return element.name != name;
         });

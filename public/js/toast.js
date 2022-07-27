@@ -1,25 +1,23 @@
-export const Toast = {
+const Toast = {
     init() {
         this.hideTimeout = null;
-        this.el = document.createElement('div');
-        this.el.className = 'toast';
-        document.getElementById('toastHere').appendChild(this.el);
+        this.el = document.createElement("div");
+        this.el.className = "toast";
+        document.getElementById("toastHere").appendChild(this.el);
     },
 
     show(message1, message2, state) {
         clearTimeout(this.hideTimeout);
         this.el.innerHTML = `${message1}<br>${message2}`;
-        this.el.className = 'toast toast-visible'
+        this.el.className = "toast toast-visible";
 
         if (state) {
-            this.el.classList.add(`toast-${state}`)
+            this.el.classList.add(`toast-${state}`);
         }
         this.hideTimeout = setTimeout(() => {
-            this.el.classList.remove('toast-visible')
-
+            this.el.classList.remove("toast-visible");
         }, 3000);
-    }
-
+    },
 };
 
-document.addEventListener('DOMContentLoaded', () => Toast.init())
+document.addEventListener("DOMContentLoaded", () => Toast.init());
