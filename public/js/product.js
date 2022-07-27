@@ -22,4 +22,41 @@ if (user_data) {
 }
 
 console.log(user_cart);
-document.getElementById("support").innerHTML = Product.name;
+
+let x ="";
+for (var i = 0;i<user_cart.length;i++){
+x+=`<tr>
+<td class="image" data-title="No"><img src="${user_cart[i]['image']}" alt="#"></td>
+<td class="product-des" data-title="Description">
+    <p class="product-name"><a href="#">${user_cart[i]['name']}</a></p>
+    <p class="product-des">${user_cart[i]['name']}</p>
+</td>
+<td class="price" data-title="Price"><span>₹ ${user_cart[i]['price']}.00</span></td>
+<td class="qty" data-title="Qty">
+    <div class="input-group">
+        <div class="button minus">
+            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                <i class="ti-minus" id = "minus${i}"></i>
+            </button>
+        </div>
+        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="1">
+        <div class="button plus">
+            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                <i class="ti-plus"></i>
+            </button>
+        </div>
+    </div>
+</td>
+<td class="total-amount" data-title="Total"><span>₹ ${user_cart[i]['price']}.00</span></td>
+<td class="action" data-title="Remove"><a href="#"><i
+            class="ti-trash remove-icon"></i></a></td>
+</tr>`
+
+
+}
+const finalPrice = user_cart.reduce((partialSum, a) => partialSum + parseInt(a.price), 0);
+console.log(finalPrice)
+document.getElementById("cartItemsBody").innerHTML = x;
+document.getElementById("totalPrice").innerHTML = `₹ ${finalPrice}.00`;
+document.getElementById("subTotal").innerHTML = `₹ ${finalPrice}.00`;
+

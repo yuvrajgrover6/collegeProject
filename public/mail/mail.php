@@ -1,20 +1,17 @@
-<?
-$name = $_POST{'name'};
-$email = $_POST{'email'};
-$subject = $_POST{'subject'};
-$message = $_POST['message'];
+<?php
 
-$email_message = "
+$to_email = "yuvraj@revamph.co.in";
+$subject = "Hello";
+$body = "Hi here i am";
+$headers = "From: yuvrajgrover6@gmail.com"
 
-Name: ".$name."
-Email: ".$email."
-Subject: ".$subject."
-Message: ".$message."
+if(mail($to_email,$subject,$body,$headers)){
+    echo "email succyes";
 
-";
+}else{
+    echo "error";
+}
 
-mail ("name@youremail.com" , "New Message", $email_message);
-header("location: ../mail-send.html");
+
+
 ?>
-
-
