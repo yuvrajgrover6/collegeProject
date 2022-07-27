@@ -1,9 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 import {
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
     getAuth,
+    updateProfile,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import {
     doc,
@@ -13,7 +15,7 @@ import {
     getFirestore,
     arrayUnion,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js";
-export const firebaseApp = initializeApp({
+const config = {
     apiKey: "AIzaSyA2QWk54gkOWIEW15tFL8-4o9Vra7oCOxI",
     authDomain: "collegecanteenmanagement.firebaseapp.com",
     databaseURL: "https://collegecanteenmanagement-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -21,8 +23,12 @@ export const firebaseApp = initializeApp({
     storageBucket: "collegecanteenmanagement.appspot.com",
     messagingSenderId: "342578691892",
     appId: "1:342578691892:web:d0bee52ef6523fe1662f61",
-});
+};
+export const firebaseApp = initializeApp(config);
+let secondaryApp = initializeApp(config, "Secondary");
+
 export const auth = getAuth(firebaseApp);
+let secondaryAuth = getAuth(secondaryApp);
 
 // if (localStorage.getItem("user") != undefined)
 //   var userCredentials = JSON.parse(localStorage.getItem("user"));
@@ -33,22 +39,24 @@ export const auth = getAuth(firebaseApp);
 //   console.log(userCredentials);
 // }
 
-export function signupEmailPass(name, email, phone, password); {
-    debugger;
-    auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            if (userCredential.user) {
-                localStorage.setItem("user", JSON.stringify(user));
-                location.replace("login.html#");
-            }
-            addUserToDb(name, email, phone)
-        })
-        .catch((error) => {
-            alert(error.message);
-        });
+export async function signupEmailPass(name, email, phone, password) {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(
+            secondaryAuth,
+            email,
+            password
+        );
+        if (userCredential.user) {
+            await updateProfile(secondaryAuth.currentUser, {
+                displayName: "name",
+            });
+            location.replace("login.html#");
+            addUserToDb(name, email, phone);
+        }
+    } catch (error) {
+        alert(error.message);
+    }
 }
-
 
 export const loginEmailPass = async(email, password) => {
     const userCredentials = await signInWithEmailAndPassword(
@@ -109,17 +117,19 @@ const addToCart = async(name, imageUrl, price) => {
     return false;
 };
 
-
 const addUserToDb = async(name, email, phone) => {
     const db = getFirestore();
     var userCredentials = JSON.parse(localStorage.getItem("user"));
     Toast.show("", "In cart", "warning");
-    await setDoc(
-        doc(db, "user", getUserEmail()), { name: name, email: email, phone: phone },
-    ).then(Toast.show("User Successfully", "Registered", "success")).error(Toast.show("User Registration", "Failed", "failure"))
+    await setDoc(doc(db, "user", getUserEmail()), {
+            name: name,
+            email: email,
+            phone: phone,
+        })
+        .then(Toast.show("User Successfully", "Registered", "success"))
+        .error(Toast.show("User Registration", "Failed", "failure"));
 
     return false;
 };
-
 
 window.addToCart = addToCart;
