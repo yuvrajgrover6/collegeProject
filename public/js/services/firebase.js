@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-
 import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -31,15 +30,6 @@ let secondaryApp = initializeApp(config, "Secondary");
 export const auth = getAuth(firebaseApp);
 let secondaryAuth = getAuth(secondaryApp);
 
-// if (localStorage.getItem("user") != undefined)
-//   var userCredentials = JSON.parse(localStorage.getItem("user"));
-// if (!userCredentials) {
-//   console.log("replacing login");
-// } else {
-//   console.log("replacing index");
-//   console.log(userCredentials);
-// }
-
 export async function signupEmailPass(name, email, phone, password) {
     try {
         const userCredential = await createUserWithEmailAndPassword(
@@ -53,6 +43,7 @@ export async function signupEmailPass(name, email, phone, password) {
             });
             await addUserToDb(name, email, phone);
             location.replace("login.html#");
+            alert("Signup Successful, Please Login");
         }
     } catch (error) {
         alert(error.message);
@@ -131,5 +122,4 @@ const addUserToDb = async(name, email, phone) => {
 
     return false;
 };
-
 window.addToCart = addToCart;

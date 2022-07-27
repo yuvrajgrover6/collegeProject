@@ -20,8 +20,9 @@ let user_cart;
 if (user_data) {
     user_cart = user_data.cart;
 }
-
-console.log(user_cart);
+if (user_data) {
+     var user = user_data;
+}
 
 let x ="";
 for (var i = 0;i<user_cart.length;i++){
