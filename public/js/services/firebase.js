@@ -1,4 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import { Toast } from "../toast.js";
+
 import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
@@ -50,8 +52,8 @@ export async function signupEmailPass(name, email, phone, password) {
             await updateProfile(secondaryAuth.currentUser, {
                 displayName: "name",
             });
+            await addUserToDb(name, email, phone);
             location.replace("login.html#");
-            addUserToDb(name, email, phone);
         }
     } catch (error) {
         alert(error.message);
@@ -119,15 +121,13 @@ const addToCart = async(name, imageUrl, price) => {
 
 const addUserToDb = async(name, email, phone) => {
     const db = getFirestore();
-    var userCredentials = JSON.parse(localStorage.getItem("user"));
-    Toast.show("", "In cart", "warning");
-    await setDoc(doc(db, "user", getUserEmail()), {
+    await setDoc(doc(db, "user", email), {
             name: name,
             email: email,
             phone: phone,
         })
         .then(Toast.show("User Successfully", "Registered", "success"))
-        .error(Toast.show("User Registration", "Failed", "failure"));
+        .catch(Toast.show("User Registration", "Failed", "failure"));
 
     return false;
 };
