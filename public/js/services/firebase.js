@@ -39,7 +39,7 @@ export async function signupEmailPass(name, email, phone, password) {
         );
         if (userCredential.user) {
             await updateProfile(secondaryAuth.currentUser, {
-                displayName: "name",
+                displayName: name,
             });
             await addUserToDb(name, email, phone);
             location.replace("login.html#");
