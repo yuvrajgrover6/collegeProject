@@ -10,7 +10,12 @@ async function clearCart() {
     var userCredentials = JSON.parse(localStorage.getItem("user"));
     await updateDoc(doc(db, "user", getUserEmail()), {
         cart: null,
-    }).then(Toast.show("Checked Out", "Sucessfully", "success"));
-    location.replace("index.html#");
+    });
+    Toast.show("Checked Out", "Sucessfully", "success")
+
+    setTimeout(() => {
+    location.replace("index.html#");}, 2000);
+    
 }
 document.getElementById("checkOut").addEventListener("click", clearCart);
+

@@ -3,6 +3,8 @@ import {
     doc,
     getDoc,
     getFirestore,
+    updateDoc,
+    deleteField
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js";
 const db = getFirestore();
 
@@ -21,12 +23,12 @@ if (user_data) {
     user_cart = user_data.cart;
 }
 if (user_data) {
-     var user = user_data;
+    var user = user_data;
 }
 
-let x ="";
-for (var i = 0;i<user_cart.length;i++){
-x+=`<tr>
+let x = "";
+for (var i = 0; i < user_cart.length; i++) {
+    x += `<tr>
 <td class="image" data-title="No"><img src="${user_cart[i]['image']}" alt="#"></td>
 <td class="product-des" data-title="Description">
     <p class="product-name"><a href="#">${user_cart[i]['name']}</a></p>
@@ -49,10 +51,15 @@ x+=`<tr>
     </div>
 </td>
 <td class="total-amount" data-title="Total"><span>₹ ${user_cart[i]['price']}.00</span></td>
-<td class="action" data-title="Remove"><a href="#"><i
-            class="ti-trash remove-icon"></i></a></td>
-</tr>`
+ <td class="action" data-title="Remove" id = "removeItem${i}"><button onclick = '${()=>deleteProduct(i)}'><i class="ti-trash remove-icon"></i></button></td>
+</tr>
+`
 
+    // document.getElementById(`removeItem${i}`).eventListener("click", (function() {
+    //     return function() {
+    //        deleteProduct(i);
+    //     };
+    //  }(i)))
 
 }
 const finalPrice = user_cart.reduce((partialSum, a) => partialSum + parseInt(a.price), 0);
@@ -60,4 +67,12 @@ console.log(finalPrice)
 document.getElementById("cartItemsBody").innerHTML = x;
 document.getElementById("totalPrice").innerHTML = `₹ ${finalPrice}.00`;
 document.getElementById("subTotal").innerHTML = `₹ ${finalPrice}.00`;
+
+function deleteProduct(int) {
+    // await updateDoc(ref, {
+    //     cart: deleteField([int]),
+    // }).then(location.reload())
+    // console.log(int);
+    console.log(int);
+}
 

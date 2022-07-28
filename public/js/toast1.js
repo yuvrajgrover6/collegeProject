@@ -8,7 +8,6 @@ const Toast = {
     },
 
     show(message1, message2, state) {
-        console.log(this.el)
         clearTimeout(this.hideTimeout);
         this.el.innerHTML = `${message1}<br>${message2}`;
         this.el.className = "toast toast-visible";
