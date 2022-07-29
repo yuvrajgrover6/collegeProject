@@ -4,7 +4,7 @@ import {
     getDoc,
     getFirestore,
     updateDoc,
-    deleteField
+    deleteField,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js";
 const db = getFirestore();
 
@@ -26,15 +26,25 @@ if (user_data) {
     var user = user_data;
 }
 
+function syhello() {
+    debugger;
+    console.log("hello");
+}
+
 let x = "";
 for (var i = 0; i < user_cart.length; i++) {
+    const deleteWrap = function() {
+        debugger;
+        console.log("hell");
+        deleteProduct(i);
+    };
     x += `<tr>
-<td class="image" data-title="No"><img src="${user_cart[i]['image']}" alt="#"></td>
+<td class="image" data-title="No"><img src="${user_cart[i]["image"]}" alt="#"></td>
 <td class="product-des" data-title="Description">
-    <p class="product-name"><a href="#">${user_cart[i]['name']}</a></p>
-    <p class="product-des">${user_cart[i]['name']}</p>
+    <p class="product-name"><a href="#">${user_cart[i]["name"]}</a></p>
+    <p class="product-des">${user_cart[i]["name"]}</p>
 </td>
-<td class="price" data-title="Price"><span>₹ ${user_cart[i]['price']}.00</span></td>
+<td class="price" data-title="Price"><span>₹ ${user_cart[i]["price"]}.00</span></td>
 <td class="qty" data-title="Qty">
     <div class="input-group">
         <div class="button minus">
@@ -50,21 +60,31 @@ for (var i = 0; i < user_cart.length; i++) {
         </div>
     </div>
 </td>
-<td class="total-amount" data-title="Total"><span>₹ ${user_cart[i]['price']}.00</span></td>
- <td class="action" data-title="Remove" id = "removeItem${i}"><button onclick = '${()=>deleteProduct(i)}'><i class="ti-trash remove-icon"></i></button></td>
+<td class="total-amount" data-title="Total"><span>₹ ${user_cart[i]["price"]}.00</span></td>
+ <td class="action" data-title="Remove" id = "removeItem${i}"><i class="ti-trash remove-icon"></i></td>
 </tr>
-`
+`;
 
-    // document.getElementById(`removeItem${i}`).eventListener("click", (function() {
-    //     return function() {
-    //        deleteProduct(i);
-    //     };
-    //  }(i)))
+    const button = document.createElement("tr");
+    button.innerHTML = x;
+    document.getElementById("cartItemsBody").appendChild(button);
 
+    console.log(document.getElementById(`removeItem${i}`))
+    document.getElementById(`removeItem${i}`).addEventListener(
+        "click",
+        (function() {
+            return function() {
+                deleteProduct(i);
+            };
+        })(i)
+    );
 }
-const finalPrice = user_cart.reduce((partialSum, a) => partialSum + parseInt(a.price), 0);
-console.log(finalPrice)
-document.getElementById("cartItemsBody").innerHTML = x;
+const finalPrice = user_cart.reduce(
+    (partialSum, a) => partialSum + parseInt(a.price),
+    0
+);
+console.log(finalPrice);
+// document.getElementById("cartItemsBody").innerHTML = x;
 document.getElementById("totalPrice").innerHTML = `₹ ${finalPrice}.00`;
 document.getElementById("subTotal").innerHTML = `₹ ${finalPrice}.00`;
 
@@ -75,4 +95,3 @@ function deleteProduct(int) {
     // console.log(int);
     console.log(int);
 }
-
