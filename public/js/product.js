@@ -4,7 +4,7 @@ import {
     getDoc,
     getFirestore,
     updateDoc,
-    deleteField,
+    arrayRemove,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-lite.js";
 const db = getFirestore();
 
@@ -33,11 +33,6 @@ function syhello() {
 
 let x = "";
 for (var i = 0; i < user_cart.length; i++) {
-    const deleteWrap = function() {
-        debugger;
-        console.log("hell");
-        deleteProduct(i);
-    };
     x += `<tr>
 <td class="image" data-title="No"><img src="${user_cart[i]["image"]}" alt="#"></td>
 <td class="product-des" data-title="Description">
@@ -69,12 +64,13 @@ for (var i = 0; i < user_cart.length; i++) {
     button.innerHTML = x;
     document.getElementById("cartItemsBody").appendChild(button);
 
-    console.log(document.getElementById(`removeItem${i}`))
+    console.log(document.getElementById(`removeItem${i}`));
     document.getElementById(`removeItem${i}`).addEventListener(
         "click",
-        (function() {
+        (function(i) {
             return function() {
-                deleteProduct(i);
+                console.log(user_cart[i]);
+                deleteProduct(i, user_cart[i]);
             };
         })(i)
     );
@@ -88,10 +84,9 @@ console.log(finalPrice);
 document.getElementById("totalPrice").innerHTML = `₹ ${finalPrice}.00`;
 document.getElementById("subTotal").innerHTML = `₹ ${finalPrice}.00`;
 
-function deleteProduct(int) {
-    // await updateDoc(ref, {
-    //     cart: deleteField([int]),
-    // }).then(location.reload())
+async function deleteProduct(int, product) {
+    await updateDoc(ref, {
+        cart: arrayRemove(product),
+    }).then(location.reload());
     // console.log(int);
-    console.log(int);
 }
