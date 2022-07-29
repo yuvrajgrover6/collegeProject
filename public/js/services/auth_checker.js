@@ -4,7 +4,10 @@ auth.onAuthStateChanged(function(user) {
     if (user) {
         location.replace("index.html#");
     } else {
-        if (location.pathname != "/public/signUp.html") {
+var path = (location.pathname).split("/")
+var length = (location.pathname).split("/").length;
+        debugger;
+        if (path[length-1] != "signUp.html") {
             location.replace("login.html#");
         }
     }
