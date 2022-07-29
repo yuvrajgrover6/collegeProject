@@ -31,6 +31,15 @@ function syhello() {
     console.log("hello");
 }
 
+if( user_cart==null || user_cart==undefined || user_cart.length < 1 ){
+    alert("Cart is empty, please add items to cart");
+    location.replace("index.html");
+   
+}
+else{}
+    
+
+
 let x = "";
 for (var i = 0; i < user_cart.length; i++) {
     x = `<tr>
@@ -75,18 +84,21 @@ for (var i = 0; i < user_cart.length; i++) {
         })(i)
     );
 }
+ 
 const finalPrice = user_cart.reduce(
     (partialSum, a) => partialSum + parseInt(a.price),
     0
 );
-console.log(finalPrice);
-// document.getElementById("cartItemsBody").innerHTML = x;
 document.getElementById("totalPrice").innerHTML = `₹ ${finalPrice}.00`;
 document.getElementById("subTotal").innerHTML = `₹ ${finalPrice}.00`;
+document.getElementById("visitCheckout").addEventListener("click", () => {
+    location.replace("checkout.html");
+});
+
 
 async function deleteProduct(int, product) {
     await updateDoc(ref, {
         cart: arrayRemove(product),
     }).then(location.reload());
-    // console.log(int);
 }
+
