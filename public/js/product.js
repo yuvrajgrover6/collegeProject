@@ -33,7 +33,7 @@ function syhello() {
 
 let x = "";
 for (var i = 0; i < user_cart.length; i++) {
-    x += `<tr>
+    x = `<tr>
 <td class="image" data-title="No"><img src="${user_cart[i]["image"]}" alt="#"></td>
 <td class="product-des" data-title="Description">
     <p class="product-name"><a href="#">${user_cart[i]["name"]}</a></p>
